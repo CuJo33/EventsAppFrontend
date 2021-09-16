@@ -28,7 +28,7 @@ function Dashboard(props) {
           <td>{current.eventName}</td>
           <td>{current.location}</td>
           <td>{current.description}</td>
-          <td>{current.imagelink}</td>
+          <td>{current.imageLink}</td>
           <td>{current.date}</td>
           <td>{current.time}</td>
           <td>

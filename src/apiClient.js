@@ -12,11 +12,14 @@ export class ApiClient {
       method,
       url,
       headers: {
-        authorization: this.tokenProvider(),
+        auth: this.tokenProvider(),
       },
       data,
     }).catch((error) => {
       console.log("arrived");
+      console.log(method);
+      console.log(url);
+      console.log(this.tokenProvider());
       console.log(data);
       if (error.response.status === 403) {
         this.logoutHandler();
@@ -31,9 +34,9 @@ export class ApiClient {
     return this.apiCall("get", url);
   }
 
-  addEvent(name, location, description, imageLink, date, time) {
+  addEvent(eventName, location, description, imageLink, date, time) {
     return this.apiCall("post", url, {
-      name,
+      eventName,
       location,
       description,
       imageLink,
@@ -46,9 +49,9 @@ export class ApiClient {
     return this.apiCall("delete", `${url}${id}`);
   }
 
-  updateEvent(id, name, location, description, imageLink, date, time) {
+  updateEvent(id, eventName, location, description, imageLink, date, time) {
     return this.apiCall("put", `${url}${id}`, {
-      name,
+      eventName,
       location,
       description,
       imageLink,

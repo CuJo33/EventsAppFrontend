@@ -22,7 +22,6 @@ function App() {
 
   return (
     <>
-      words{token}words
       {token ? (
         <Dashboard client={client} />
       ) : (
