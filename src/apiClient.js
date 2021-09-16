@@ -16,11 +16,6 @@ export class ApiClient {
       },
       data,
     }).catch((error) => {
-      console.log("arrived");
-      console.log(method);
-      console.log(url);
-      console.log(this.tokenProvider());
-      console.log(data);
       if (error.response.status === 403) {
         this.logoutHandler();
         return Promise.reject();
