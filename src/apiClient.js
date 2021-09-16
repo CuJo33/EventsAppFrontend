@@ -16,6 +16,8 @@ export class ApiClient {
       },
       data,
     }).catch((error) => {
+      console.log("arrived");
+      console.log(data);
       if (error.response.status === 403) {
         this.logoutHandler();
         return Promise.reject();
@@ -25,30 +27,44 @@ export class ApiClient {
     });
   }
 
-  getAds() {
+  getEvents() {
     return this.apiCall("get", url);
   }
 
-  addAd(name, price) {
-    return this.apiCall("post", url, { name, price });
+  addEvent(name, location, description, imageLink, date, time) {
+    return this.apiCall("post", url, {
+      name,
+      location,
+      description,
+      imageLink,
+      date,
+      time,
+    });
   }
 
-  removeAd(id) {
+  removeEvent(id) {
     return this.apiCall("delete", `${url}${id}`);
   }
 
-  updateAd(id, name, price) {
-    return this.apiCall("put", `${url}${id}`, { name, price });
+  updateEvent(id, name, location, description, imageLink, date, time) {
+    return this.apiCall("put", `${url}${id}`, {
+      name,
+      location,
+      description,
+      imageLink,
+      date,
+      time,
+    });
   }
 
-  //   async login(username, password) {
-  //     return await axios({
-  //       method: "post",
-  //       url: `${url}auth`,
-  //       data: {
-  //         username,
-  //         password,
-  //       },
-  //     });
-  //   }
+  async login(username, password) {
+    return await axios({
+      method: "POST",
+      url: `${url}auth`,
+      data: {
+        username,
+        password,
+      },
+    });
+  }
 }
