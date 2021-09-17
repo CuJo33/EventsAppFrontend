@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 
-function Login(props) {
+function SignUp(props) {
   const [disabled, cDisabled] = useState(false);
   const [user, cUser] = useState("");
   const [password, cPassword] = useState("");
@@ -16,23 +16,25 @@ function Login(props) {
     e.preventDefault();
     cDisabled(true);
     props.client
-      .login(e.target.username.value, e.target.password.value)
+      .signUp(e.target.username.value, e.target.password.value)
       .then((response) => {
-        if (response.data.status === 401 || response.data.status === 403) {
+        if (response.data.status === 404) {
           throw new Error(response.data.message);
+        } else if (response.data.status === 200) {
+          alert(response.data.message + " Please now login");
         }
         cDisabled(false);
-        props.loggedIn(response.data.token);
       })
       .catch((e) => {
         alert(e);
+        console.log(e);
         cDisabled(false);
       });
   };
 
   return (
     <>
-      Login
+      Sign Up
       <br />
       <Form onSubmit={(e) => submitHandler(e)}>
         username
@@ -65,4 +67,4 @@ function Login(props) {
   );
 }
 
-export default Login;
+export default SignUp;

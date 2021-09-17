@@ -30,6 +30,7 @@ export class ApiClient {
   }
 
   addEvent(eventName, location, description, imageLink, date, time) {
+    console.log(time);
     return this.apiCall("post", url, {
       eventName,
       location,
@@ -59,6 +60,17 @@ export class ApiClient {
     return await axios({
       method: "POST",
       url: `${url}auth`,
+      data: {
+        username,
+        password,
+      },
+    });
+  }
+
+  async signUp(username, password) {
+    return await axios({
+      method: "POST",
+      url: `${url}user`,
       data: {
         username,
         password,

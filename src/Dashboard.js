@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import Add from "./Add";
+import "./App.css";
+
+import Button from "react-bootstrap/Button";
+import Table from "react-bootstrap/Table";
 
 function Dashboard(props) {
   const [events, cEvents] = useState([]);
@@ -28,12 +32,30 @@ function Dashboard(props) {
           <td>{current.eventName}</td>
           <td>{current.location}</td>
           <td>{current.description}</td>
-          <td>{current.imageLink}</td>
-          <td>{current.date}</td>
+          <td>
+            <img id="image" src={current.imageLink} />
+          </td>
+          <td>{`${new Date(current.date).getUTCDate()}/${
+            new Date(current.date).getUTCMonth() + 1
+          }/${new Date(current.date).getFullYear()}`}</td>
           <td>{current.time}</td>
           <td>
-            <button onClick={() => removeEvent(current._id)}> remove</button>
-            <button onClick={() => updateEvent(current)}> update</button>
+            <Button
+              id="update-button"
+              className="btn btn-warning"
+              onClick={() => updateEvent(current)}
+            >
+              {" "}
+              update
+            </Button>
+            <Button
+              id="remove-button"
+              className="btn btn-danger"
+              onClick={() => removeEvent(current._id)}
+            >
+              {" "}
+              remove
+            </Button>
           </td>
         </tr>
       );
@@ -44,7 +66,7 @@ function Dashboard(props) {
     <>
       Dashboard
       <br />
-      <table>
+      <Table>
         <thead>
           <tr>
             <th>Event Name</th>
@@ -52,11 +74,11 @@ function Dashboard(props) {
             <th>Description</th>
             <th>Image</th>
             <th>Date</th>
-            <th>Time</th>
+            <th>Time 24h</th>
           </tr>
         </thead>
         <tbody>{buildrows()}</tbody>
-      </table>
+      </Table>
       <br />
       <br />
       <Add

@@ -1,18 +1,17 @@
 import React, { useState } from "react";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
 
 function Add(props) {
   const [disabled, cDisabled] = useState(false);
-
   const [eventName, cEventName] = useState(props.currentEvent?.eventName || "");
   const [location, cLocation] = useState(props.currentEvent?.location || "");
   const [description, cDescription] = useState(
     props.currentEvent?.description || ""
   );
   const [imageLink, cImageLink] = useState(props.currentEvent?.imagelink || "");
-  const [date, cDate] = useState(
-    props.currentEvent?.date || new Date().toISOString().slice(0, 10)
-  );
-  const [time, cTime] = useState(props.currentEvent?.time || "00:00");
+  const [date, cDate] = useState(props.currentEvent?.date || "");
+  const [time, cTime] = useState(props.currentEvent?.time || "");
 
   const onChange = (e, changer) => {
     e.preventDefault();
@@ -24,7 +23,6 @@ function Add(props) {
     cDisabled(true);
     let result;
     if (props.currentEvent) {
-      console.log(e.target);
       result = props.client.updateEvent(
         props.currentEvent._id,
         e.target.eventName.value,
@@ -47,8 +45,12 @@ function Add(props) {
     result
       .then(() => {
         cDisabled(false);
-        console.log("something");
-        document.getElementById("addForm").reset();
+        cEventName("");
+        cLocation("");
+        cDescription("");
+        cImageLink("");
+        cDate("");
+        cTime("");
         props.refreshList();
       })
       .catch(() => {
@@ -59,16 +61,15 @@ function Add(props) {
 
   return (
     <>
-      {props.currentEvent ? "Update" : "Add"}
+      {props.currentEvent ? "Update event" : "Add New Event"}
       <br />
 
-      <form onSubmit={(e) => submitHandler(e)} id="addForm">
+      <Form autocomplete="off" onSubmit={(e) => submitHandler(e)} id="addForm">
         Name: <br />
         <input
           onChange={(e) => onChange(e, cEventName)}
           type="text"
-          defaultValue={props.currentEvent?.eventName}
-          value={eventName}
+          value={props.currentEvent?.eventName || eventName}
           name="eventName"
           disabled={disabled}
         />
@@ -78,8 +79,7 @@ function Add(props) {
         <input
           onChange={(e) => onChange(e, cLocation)}
           type="text"
-          defaultValue={props.currentEvent?.location}
-          value={location}
+          value={props.currentEvent?.location || location}
           name="location"
           disabled={disabled}
         />
@@ -89,19 +89,17 @@ function Add(props) {
         <input
           onChange={(e) => onChange(e, cDescription)}
           type="text"
-          defaultValue={props.currentEvent?.description}
-          value={description}
+          value={props.currentEvent?.description || description}
           name="description"
           disabled={disabled}
         />
         <br />
-        Image Link:
+        Image Link (https://somelinkhere):
         <br />
         <input
           onChange={(e) => onChange(e, cImageLink)}
           type="text"
-          defaultValue={props.currentEvent?.imageLink}
-          value={imageLink}
+          value={props.currentEvent?.imageLink || imageLink}
           name="imageLink"
           disabled={disabled}
         />
@@ -111,29 +109,27 @@ function Add(props) {
         <input
           onChange={(e) => onChange(e, cDate)}
           type="date"
-          defaultValue={props.currentEvent?.date}
-          value={date}
+          value={props.currentEvent?.date || date}
           name="date"
           disabled={disabled}
         />
         <br />
-        Time:
+        Time 24h:
         <br />
         <input
           onChange={(e) => onChange(e, cTime)}
           type="time"
-          defaultValue={props.currentEvent?.time}
-          value={time}
+          value={props.currentEvent?.time || time}
           name="time"
           disabled={disabled}
         />
         <br />
         <br />
-        <button type="submit" disabled={disabled}>
+        <Button className="btn btn-success" type="submit" disabled={disabled}>
           {" "}
           Submit{" "}
-        </button>
-      </form>
+        </Button>
+      </Form>
     </>
   );
 }
