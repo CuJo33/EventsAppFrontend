@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/EventsAppFrontend/static/css/main.74c7618b.chunk.css",
+    "main.js": "/EventsAppFrontend/static/js/main.3e0cbef1.chunk.js",
+    "main.js.map": "/EventsAppFrontend/static/js/main.3e0cbef1.chunk.js.map",
+    "runtime-main.js": "/EventsAppFrontend/static/js/runtime-main.40cbf466.js",
+    "runtime-main.js.map": "/EventsAppFrontend/static/js/runtime-main.40cbf466.js.map",
+    "static/css/2.818011ed.chunk.css": "/EventsAppFrontend/static/css/2.818011ed.chunk.css",
+    "static/js/2.a108937f.chunk.js": "/EventsAppFrontend/static/js/2.a108937f.chunk.js",
+    "static/js/2.a108937f.chunk.js.map": "/EventsAppFrontend/static/js/2.a108937f.chunk.js.map",
+    "index.html": "/EventsAppFrontend/index.html",
+    "static/css/2.818011ed.chunk.css.map": "/EventsAppFrontend/static/css/2.818011ed.chunk.css.map",
+    "static/css/main.74c7618b.chunk.css.map": "/EventsAppFrontend/static/css/main.74c7618b.chunk.css.map",
+    "static/js/2.a108937f.chunk.js.LICENSE.txt": "/EventsAppFrontend/static/js/2.a108937f.chunk.js.LICENSE.txt",
+    "static/media/cujo_head.88802575.jpg": "/EventsAppFrontend/static/media/cujo_head.88802575.jpg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.40cbf466.js",
+    "static/css/2.818011ed.chunk.css",
+    "static/js/2.a108937f.chunk.js",
+    "static/css/main.74c7618b.chunk.css",
+    "static/js/main.3e0cbef1.chunk.js"
+  ]
+}
